@@ -41,7 +41,7 @@ let time = measureTime {
 if path == nil {
     print("Can't find a path :(")
 } else {
-    print("Total path cost: \(path!.first!.distanceFromStart), found in \(time)")
+    print("Total path cost: \(path!.first!.distanceFromStart), found in \(time)s")
 }
 draw(map: map, path: path)
 
