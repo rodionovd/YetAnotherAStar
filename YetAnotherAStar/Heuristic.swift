@@ -17,6 +17,7 @@ enum Heuristic {
 
     func costOfMove(from cell: Cell, toNeighbour neighbour: Cell) -> Double
     {
+        // Diagonal moves cost 14, horizontal/vertical moves cost 10
         return ((abs(cell.coordinates.x - neighbour.coordinates.x) > 0 && abs(cell.coordinates.y - neighbour.coordinates.y) > 0) ? 14 : 10)
     }
 
