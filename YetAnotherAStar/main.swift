@@ -10,19 +10,14 @@ import Foundation
 
 public func measureTime(block: () -> ()) -> Double
 {
-    // Record start time
     let start = Date()
-    // Execute the closure
     block()
-    // Record end time
     let end = Date()
-    // Calculate and return the delta time
     return end.timeIntervalSince(start)
 }
 
 func draw(map: Map, path maybePath: Path?)
 {
-//    let chars = "abcdefghijklmnopqrstuvwxyz0123456789".characters.map { String($0) }
     for x in 0..<map.cells.count {
         print(map.cells[x].map({
             guard let path = maybePath, path.contains($0) else {
