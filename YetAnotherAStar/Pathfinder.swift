@@ -31,13 +31,13 @@ func findPath(onMap map: Map, usingHeuristic heuristic: Heuristic, strategy: Mov
 
         // For every walkable neighbour cell
         for neighbour in neighbours(forCell: current, inMap: map, movingStrategy: strategy) {
-            // Calculate its G and H values
-            let moveCost = heuristic.costOfMove(from: current, toNeighbour: neighbour)
-            let hCost = heuristic.approximateCostOfMoving(from: neighbour, toEnd: finish)
             // if this neighbour cell is already in the closed list ignore it
             if closed.contains(neighbour) {
                 continue
             }
+            // Calculate its G and H values
+            let moveCost = heuristic.costOfMove(from: current, toNeighbour: neighbour)
+            let hCost = heuristic.approximateCostOfMoving(from: neighbour, toEnd: finish)
 
             if !open.contains(neighbour) {
                 // set this neighbour's G and H, change the previous cell to the current one
