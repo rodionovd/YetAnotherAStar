@@ -11,6 +11,19 @@ import Foundation
 struct MapBuilder {
     let size: (width: Int, height: Int)
 
+    func map(fromStrings strings: [String]) -> Map
+    {
+        var cells: [[Cell]] = [[]]
+        for x in 0..<size.width {
+            cells.append([])
+            for y in 0..<size.height {
+                let row = strings[x]
+                cells[x].append(Cell(coordinates: (x, y), kind: Cell.Kind.from(description: row.components(separatedBy: "  ")[y])))
+            }
+        }
+        return Map(cells: cells)
+    }
+
     func randomMap(withStart start: Coordinates2D, finish: Coordinates2D, seed: Int? = nil) -> Map {
         if let actualSeed = seed {
             srand48(actualSeed)

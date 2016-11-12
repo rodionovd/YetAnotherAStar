@@ -60,5 +60,17 @@ class Cell: CustomStringConvertible, Equatable
             case .Finish: return "F"
             }
         }
+
+        static func from(description: String) -> Cell.Kind
+        {
+            switch description {
+            case ".": return .Empty
+            case "|": return .Wall
+            case "S": return .Start
+            case "F": return .Finish
+            default:
+                fatalError("Unknown cell kind description")
+            }
+        }
     }
 }
