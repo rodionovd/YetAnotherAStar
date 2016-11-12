@@ -27,11 +27,11 @@ enum Heuristic {
         case .Manhattan:
             return Double(abs(cell.coordinates.x - end.coordinates.x) + abs(cell.coordinates.y - end.coordinates.y)) * 40
         case .Euclidean:
-            return sqrt(pow(Double(cell.coordinates.x - end.coordinates.x), 2) + pow(Double(end.coordinates.y - end.coordinates.y), 2))
+            return (pow(Double(cell.coordinates.x - end.coordinates.x), 2) + pow(Double(cell.coordinates.y - end.coordinates.y), 2)) * 10
         case .Chebyshev:
             let dx = abs(cell.coordinates.x - end.coordinates.x)
             let dy = abs(cell.coordinates.y - end.coordinates.y)
-            return Double((dx + dy) - min(dx, dy))
+            return Double((dx + dy) - min(dx, dy)) * 10
         }
     }
 }
