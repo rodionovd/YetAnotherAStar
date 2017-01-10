@@ -32,20 +32,72 @@ func draw(map: Map, path maybePath: Path?)
 }
 
 
-let builder = MapBuilder(size: (10, 15))
-let map = builder.randomMap(withStart: (0, 3), finish: (7, 11), seed: nil)
+let builder = MapBuilder(size: (10, 10))
+//let map = builder.randomMap(withStart: (2, 4), finish: (9, 6), seed: 1920917412)
+//let map = builder.map(fromStrings: [
+//    ".  .  .  .  .  .  .  .  .  .",
+//    ".  .  .  .  .  .  .  |  F  .",
+//    ".  .  .  .  .  .  .  |  .  .",
+//    ".  .  .  .  .  S  .  |  .  .",
+//    ".  .  .  .  .  .  .  .  .  .",
+//    ".  .  .  .  .  .  .  .  .  .",
+//    ".  .  .  .  .  .  .  .  .  .",
+//    ".  .  .  .  .  .  .  .  .  .",
+//    ".  .  .  .  .  .  .  .  .  .",
+//    ".  .  .  .  .  .  .  .  .  ."
+//])
+
+//let map = builder.map(fromStrings: [
+//    ".  .  .  .  .  .  .  .  .  .",
+//    ".  .  .  .  .  .  .  .  .  .",
+//    ".  .  .  .  .  .  .  .  .  .",
+//    ".  .  .  .  .  .  .  .  .  .",
+//    ".  .  .  .  .  .  .  .  .  .",
+//    ".  .  .  .  .  .  .  .  .  .",
+//    ".  .  .  .  .  .  .  .  .  .",
+//    ".  .  .  .  .  .  |  .  .  .",
+//    ".  .  .  S  .  .  |  .  .  .",
+//    ".  .  .  .  .  .  |  F  .  ."
+//])
+let map = builder.map(fromStrings: [
+    ".  .  .  .  .  .  .  .  .  .",
+    ".  .  .  .  .  .  .  .  .  .",
+    ".  .  .  .  .  .  .  .  |  .",
+    ".  .  S  .  .  .  .  .  |  .",
+    ".  .  .  .  .  .  .  .  |  .",
+    ".  .  .  .  .  .  .  .  |  .",
+    ".  .  .  .  .  .  .  .  |  .",
+    ".  .  .  .  .  .  .  .  |  .",
+    ".  .  .  .  .  .  .  .  |  .",
+    ".  .  .  .  .  .  .  .  |  F"
+])
+
 var path: Path? = nil
 let time = measureTime {
-    path = findPath(onMap: map, usingHeuristic: .Euclidean, strategy: .EverythingAllowed, logging: false)
+    path = findPath(onMap: map, usingHeuristic: .Manhattan, strategy: .EverythingAllowed, logging: true)
 }
+// [(8, 3), (9, 4), (9, 5), (8, 5), (8, 4), (7, 5), (7, 4), (6, 5), (6, 6), (6, 7), (7, 7), (8, 7)]
 if path == nil {
     print("Can't find a path :(")
 } else {
-    print("Total path cost: \(path!.first!.distanceFromStart), found in \(time)s")
+    print("Total path cost: \(path!.first!.distanceFromStart), found in \(time)s\n")
 }
 draw(map: map, path: path)
 
 
 // Euclidean vs Manhattan: 1641502282
 
+
+//let map = builder.map(fromStrings: [
+//    ".  .  .  .  .  .  .  .  .  .",
+//    ".  .  .  .  .  .  .  .  .  .",
+//    ".  .  .  .  .  .  .  .  .  .",
+//    ".  .  .  .  .  .  .  .  .  .",
+//    ".  .  .  .  .  .  .  .  .  .",
+//    ".  .  .  .  .  .  .  .  .  .",
+//    ".  .  .  .  .  .  .  .  .  .",
+//    ".  .  .  .  .  .  .  .  .  .",
+//    ".  .  .  .  .  .  .  .  .  .",
+//    ".  .  .  .  .  .  .  .  .  ."
+//])
 
